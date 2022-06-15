@@ -1,0 +1,10 @@
+gradle.properties
+gradlew
+gradlew.bat
+local.properties
+settings.gradle
+app/proguard-rules.pro
+app/src/androidTest/java/io/ramani/themoviedbtask/ExampleInstrumentedTest.java
+app/src/test/java/io/ramani/themoviedbtask/ExampleUnitTest.java
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
