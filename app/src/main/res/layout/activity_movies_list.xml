@@ -20,13 +20,18 @@
             app:iconifiedByDefault="false"
             app:queryHint="@string/search_hint" />
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/adults_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/include_adults" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/data_recycler_view"
+            android:id="@+id/movies_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp" />
     </LinearLayout>
-
 
     <ProgressBar
         android:id="@+id/loader_view"

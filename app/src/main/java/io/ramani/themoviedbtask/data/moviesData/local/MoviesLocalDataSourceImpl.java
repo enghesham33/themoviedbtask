@@ -5,6 +5,7 @@ import java.util.List;
 import io.ramani.themoviedbtask.App;
 import io.ramani.themoviedbtask.data.database.MoviesDao;
 import io.ramani.themoviedbtask.domain.model.MoviesModel;
+import io.ramani.themoviedbtask.domain.model.MoviesResponseModel;
 import io.reactivex.Single;
 
 public class MoviesLocalDataSourceImpl implements MoviesLocalDataSource {
@@ -23,8 +24,22 @@ public class MoviesLocalDataSourceImpl implements MoviesLocalDataSource {
     }
 
     @Override
-    public Single<List<MoviesModel>> getMoviesList(String query, boolean includeAdult) {
-        return query.trim().isEmpty() ? this.dao.getAllData() : this.dao.getAllData(query, includeAdult);
+    public Single<MoviesResponseModel> getMoviesList(String query, boolean includeAdult) {
+        if (query.trim().isEmpty()) {
+            return this.dao.getAllData().flatMap(data -> Single.just(new MoviesResponseModel(data, false)));
+        } else {
+            return this.dao.getAllData(query, includeAdult).flatMap(data -> Single.just(new MoviesResponseModel(data, false)));
+        }
+    }
+
+    @Override
+    public Single<MoviesModel> getMovieDetails(int movieId) {
+        return this.dao.getMovieById(movieId).flatMap(moviesModels -> {
+            if (moviesModels.isEmpty()) {
+                return Single.just(new MoviesModel());
+            }
+            return Single.just(moviesModels.get(0));
+        });
     }
 
     @Override

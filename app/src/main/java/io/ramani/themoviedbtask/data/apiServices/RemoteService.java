@@ -1,5 +1,11 @@
 package io.ramani.themoviedbtask.data.apiServices;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+
+import java.net.InetAddress;
+
+import io.ramani.themoviedbtask.App;
 import io.ramani.themoviedbtask.data.MoviesAPICall;
 import io.ramani.themoviedbtask.data.commonData.Constants;
 import okhttp3.OkHttpClient;
@@ -31,6 +37,11 @@ public class RemoteService {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    }
+
+    public boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
     public static RemoteService getInstance() {

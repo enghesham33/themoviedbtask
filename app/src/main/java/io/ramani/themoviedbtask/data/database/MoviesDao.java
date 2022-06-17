@@ -19,8 +19,12 @@ public interface MoviesDao {
     Single<List<MoviesModel>> getAllData();
 
     @Query("select * from movie_model as model where model.title like :query " +
-            " or model.adult = :includeAdult")
+            " and model.adult = :includeAdult")
     Single<List<MoviesModel>> getAllData(String query, boolean includeAdult);
+
+    @Query("select * from movie_model as model where model.id = :movieId ")
+    Single<List<MoviesModel>> getMovieById(int movieId);
+
 
     @Insert(onConflict = REPLACE)
     Completable insertData(MoviesModel data);

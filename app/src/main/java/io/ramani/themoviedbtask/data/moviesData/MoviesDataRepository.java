@@ -8,6 +8,7 @@ import io.ramani.themoviedbtask.data.moviesData.local.MoviesLocalDataSourceImpl;
 import io.ramani.themoviedbtask.data.moviesData.remote.MoviesRemoteDataSource;
 import io.ramani.themoviedbtask.data.moviesData.remote.MoviesRemoteDataSourceImpl;
 import io.ramani.themoviedbtask.domain.model.MoviesModel;
+import io.ramani.themoviedbtask.domain.model.MoviesResponseModel;
 import io.reactivex.Single;
 
 public class MoviesDataRepository {
@@ -21,14 +22,20 @@ public class MoviesDataRepository {
         this.localDataSource = MoviesLocalDataSourceImpl.getInstance();
     }
 
-    public Single<List<MoviesModel>> getData(String query, int page, boolean includeAdult) {
-        return localDataSource.getMoviesList(query, includeAdult).flatMap(dataList -> {
-            if (dataList.isEmpty()) {
-                return remoteDataSource.getMoviesList(query, page, includeAdult);
-            } else {
-                return Single.just(dataList);
-            }
-        });
+    public Single<MoviesResponseModel> getMoviesList(String query, int page, boolean includeAdult) {
+        if (RemoteService.getInstance().isInternetAvailable()) {
+            return remoteDataSource.getMoviesList(query, page, includeAdult);
+        } else {
+            return localDataSource.getMoviesList(query, includeAdult).flatMap(Single::just);
+        }
+    }
+
+    public Single<MoviesModel> getMovieDetails(int movieId) {
+        if (RemoteService.getInstance().isInternetAvailable()) {
+            return remoteDataSource.getMovieDetails(movieId);
+        } else {
+            return localDataSource.getMovieDetails(movieId);
+        }
     }
 
     public void saveData(List<MoviesModel> moviesModels) {
