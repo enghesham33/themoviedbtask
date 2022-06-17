@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class VideoRemoteModel {
-    @SerializedName("backdrops")
-    public ArrayList<ImageRemoteModel> backdrops;
+    @SerializedName("results")
+    public ArrayList<VideoMediaDetailsRemoteModel> results;
 }

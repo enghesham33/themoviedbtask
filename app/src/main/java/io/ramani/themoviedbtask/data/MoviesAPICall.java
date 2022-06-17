@@ -14,6 +14,6 @@ public interface MoviesAPICall {
                                                @Query("page") int page, @Query("include_adult") boolean includeAdult);
 
     @GET(Constants.BASE_URL + "movie/{movie_id}")
-    Single<MovieRemoteModel> getMovieDetails(@Query("api_key") String apiKey, @Path("movie_id") int id,
+    Single<MovieRemoteModel> getMovieDetails(@Path("movie_id") int id, @Query("api_key") String apiKey,
                                              @Query("append_to_response") String appendToResponse);
 }

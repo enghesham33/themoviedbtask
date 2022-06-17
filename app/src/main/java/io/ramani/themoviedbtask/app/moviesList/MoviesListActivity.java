@@ -1,5 +1,6 @@
 package io.ramani.themoviedbtask.app.moviesList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 import io.ramani.themoviedbtask.R;
 import io.ramani.themoviedbtask.app.base.BaseActivity;
 import io.ramani.themoviedbtask.app.base.PaginationScrollListener;
+import io.ramani.themoviedbtask.app.movieDetails.MovieDetailsActivity;
 import io.ramani.themoviedbtask.app.viewModels.MoviesViewModel;
+import io.ramani.themoviedbtask.domain.model.MoviesModel;
 
-public class MoviesListActivity extends BaseActivity<MoviesViewModel> implements CompoundButton.OnCheckedChangeListener {
+public class MoviesListActivity extends BaseActivity<MoviesViewModel> implements CompoundButton.OnCheckedChangeListener, MoviesListAdapter.OnItemClickListener {
 
     private MoviesListAdapter adapter;
     private ProgressBar loader;
@@ -64,7 +67,7 @@ public class MoviesListActivity extends BaseActivity<MoviesViewModel> implements
 
     private void setupMoviesRecyclerView() {
         RecyclerView moviesRecyclerView = findViewById(R.id.movies_recycler_view);
-        adapter = new MoviesListAdapter(new ArrayList<>(), this);
+        adapter = new MoviesListAdapter(new ArrayList<>(), this, this);
         moviesRecyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         moviesRecyclerView.setLayoutManager(layoutManager);
@@ -108,5 +111,12 @@ public class MoviesListActivity extends BaseActivity<MoviesViewModel> implements
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
         viewModel.getMoviesList(String.valueOf(searchView.getQuery()), checked);
+    }
+
+    @Override
+    public void onItemClick(MoviesModel movie) {
+        Intent intent = new Intent(this, MovieDetailsActivity.class);
+        intent.putExtra(MovieDetailsActivity.MOVIE_ID_PARAM, movie.remoteId);
+        startActivity(intent);
     }
 }

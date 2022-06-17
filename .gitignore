@@ -132,3 +132,5 @@ gradle/wrapper/gradle-wrapper.properties
 .idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_4_0_aar.xml
 .idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_aar.xml
 .idea/libraries/Gradle__androidx_startup_startup_runtime_1_0_0_aar.xml
+.idea/assetWizardSettings.xml
+.idea/libraries/Gradle____app_libs_YouTubeAndroidPlayerApi_jar.xml

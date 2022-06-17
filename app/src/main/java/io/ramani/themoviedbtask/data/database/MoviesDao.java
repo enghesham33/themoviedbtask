@@ -22,7 +22,7 @@ public interface MoviesDao {
             " and model.adult = :includeAdult")
     Single<List<MoviesModel>> getAllData(String query, boolean includeAdult);
 
-    @Query("select * from movie_model as model where model.id = :movieId ")
+    @Query("select * from movie_model as model where model.remote_id = :movieId ")
     Single<List<MoviesModel>> getMovieById(int movieId);
 
 

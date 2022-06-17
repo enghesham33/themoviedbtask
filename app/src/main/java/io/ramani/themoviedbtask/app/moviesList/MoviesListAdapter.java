@@ -24,10 +24,12 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
 
     List<MoviesModel> movies;
     Context context;
+    OnItemClickListener onItemClickListener;
 
-    public MoviesListAdapter(List<MoviesModel> movies, Context context) {
+    public MoviesListAdapter(List<MoviesModel> movies, Context context, OnItemClickListener onItemClickListener) {
         this.movies = movies;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     public void changeDataSet(List<MoviesModel> movies) {
@@ -52,8 +54,14 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
         }
         holder.movieTitleTextView.setText(movie.title);
         holder.movieReleaseDateTextView.setText(movie.releaseDate);
-        holder.movieVoteAverageTextView.setText(movie.voteAverage + " / 10");
-        holder.movieVotesCountTextView.setText(movie.voteCount + "");
+        holder.movieVoteAverageTextView.setText(context.getResources().getString(R.string.rate) + " " + movie.voteAverage + " / 10");
+        holder.movieVotesCountTextView.setText(context.getResources().getString(R.string.total_votes) + " " + movie.voteCount);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onItemClick(movie);
+            }
+        });
     }
 
     @Override
@@ -77,5 +85,9 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
             movieVoteAverageTextView = itemView.findViewById(R.id.movie_vote_average_text_view);
             movieVotesCountTextView = itemView.findViewById(R.id.movie_votes_count_text_view);
         }
+    }
+
+    interface OnItemClickListener {
+        void onItemClick(MoviesModel movie);
     }
 }

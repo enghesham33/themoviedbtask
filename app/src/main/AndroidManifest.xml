@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.themoviedb">
         <activity
+            android:name=".app.movieDetails.YoutubePlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".app.movieDetails.MovieDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".app.moviesList.MoviesListActivity"
             android:exported="true">
             <intent-filter>

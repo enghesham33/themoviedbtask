@@ -18,6 +18,7 @@ public class MoviesRemoteMapper implements ModelMapper<MovieRemoteModel, MoviesM
                 .title(from.title)
                 .voteAverage(from.voteAverage)
                 .voteCount(from.voteCount)
+                .videoId(from.videos != null ? from.videos.results.size() > 0 ? from.videos.results.get(0).key : null : null)
                 .build();
     }
 
@@ -33,6 +34,7 @@ public class MoviesRemoteMapper implements ModelMapper<MovieRemoteModel, MoviesM
                     .title(from.get(index).title)
                     .voteAverage(from.get(index).voteAverage)
                     .voteCount(from.get(index).voteCount)
+                    .videoId(from.get(index).videos != null ? from.get(index).videos.results.size() > 0 ? from.get(index).videos.results.get(0).id : null : null)
                     .build();
             dataList.add(moviesModel);
         }

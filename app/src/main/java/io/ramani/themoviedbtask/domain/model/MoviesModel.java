@@ -36,11 +36,14 @@ public class MoviesModel implements Serializable {
     @ColumnInfo(name = "vote_count")
     public int voteCount;
 
+    @ColumnInfo(name = "video_id")
+    public String videoId;
+
     public MoviesModel() {
     }
 
     public MoviesModel(int remoteId, boolean adult, String posterPath, String releaseDate, String title,
-                       double voteAverage, int voteCount) {
+                       double voteAverage, int voteCount, String videoId) {
         this.remoteId = remoteId;
         this.adult = adult;
         this.posterPath = posterPath;
@@ -48,6 +51,7 @@ public class MoviesModel implements Serializable {
         this.title = title;
         this.voteAverage = voteAverage;
         this.voteCount = voteCount;
+        this.videoId = videoId;
     }
 
     public static class Builder implements IBuilder<MoviesModel> {
@@ -59,6 +63,7 @@ public class MoviesModel implements Serializable {
         private String title;
         private double voteAverage;
         private int voteCount;
+        private String videoId;
 
         public Builder remoteId(int remoteId) {
             this.remoteId = remoteId;
@@ -95,9 +100,14 @@ public class MoviesModel implements Serializable {
             return this;
         }
 
+        public Builder videoId(String videoId) {
+            this.videoId = videoId;
+            return this;
+        }
+
         @Override
         public MoviesModel build() {
-            return new MoviesModel(remoteId, adult, posterPath, releaseDate, title, voteAverage, voteCount);
+            return new MoviesModel(remoteId, adult, posterPath, releaseDate, title, voteAverage, voteCount, videoId);
         }
     }
 }

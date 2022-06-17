@@ -39,7 +39,7 @@ public class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource {
 
     @Override
     public Single<MoviesModel> getMovieDetails(int id) {
-        return this.moviesAPICall.getMovieDetails(Constants.API_KEY, id, "videos,images")
+        return this.moviesAPICall.getMovieDetails(id, Constants.API_KEY, "videos,images")
                 .flatMap(data -> Single.just(moviesRemoteMapper.mapFrom(data)));
     }
 }
