@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <queries>
         <intent>
             <action android:name="com.google.android.youtube.api.service.START" />
@@ -18,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.themoviedb">
         <activity
-            android:name=".app.movieDetails.YoutubePlayerActivity"
+            android:name=".app.movies.movieDetails.YoutubePlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".app.movieDetails.MovieDetailsActivity"
+            android:name=".app.movies.movieDetails.MovieDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".app.moviesList.MoviesListActivity"
+            android:name=".app.movies.moviesList.MoviesListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -134,3 +134,4 @@ gradle/wrapper/gradle-wrapper.properties
 .idea/libraries/Gradle__androidx_startup_startup_runtime_1_0_0_aar.xml
 .idea/assetWizardSettings.xml
 .idea/libraries/Gradle____app_libs_YouTubeAndroidPlayerApi_jar.xml
+deploymentTargetDropDown.xml

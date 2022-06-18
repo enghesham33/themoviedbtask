@@ -1,4 +1,4 @@
-package io.ramani.themoviedbtask.app.movieDetails;
+package io.ramani.themoviedbtask.app.movies.movieDetails;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,10 @@ public class MovieDetailsActivity extends BaseActivity<MoviesViewModel> {
 
     private ProgressBar loader;
     ImageView moviePosterImageView;
-    TextView movieTitleTextView;
     TextView movieReleaseDateTextView;
-    TextView movieVoteAverageTextView;
     TextView movieVotesCountTextView;
     Button playVideoButton;
+    RatingBar movieRatingBar;
 
     @Override
     protected MoviesViewModel initiateViewModel() {
@@ -43,9 +43,8 @@ public class MovieDetailsActivity extends BaseActivity<MoviesViewModel> {
         loader = findViewById(R.id.loader_view);
         playVideoButton = findViewById(R.id.play_video_button);
         moviePosterImageView = findViewById(R.id.movie_poster_image_view);
-        movieTitleTextView = findViewById(R.id.movie_title_text_view);
+        movieRatingBar = findViewById(R.id.movie_rating_bar);
         movieReleaseDateTextView = findViewById(R.id.movie_release_date_text_view);
-        movieVoteAverageTextView = findViewById(R.id.movie_vote_average_text_view);
         movieVotesCountTextView = findViewById(R.id.movie_votes_count_text_view);
 
         int movieId = getIntent().getIntExtra(MOVIE_ID_PARAM, 0);
@@ -79,9 +78,9 @@ public class MovieDetailsActivity extends BaseActivity<MoviesViewModel> {
             Glide.with(this).load(Constants.BASE_Media_URL + movie.posterPath)
                     .apply(RequestOptions.centerCropTransform()).into(moviePosterImageView);
         }
-        movieTitleTextView.setText(movie.title);
-        movieReleaseDateTextView.setText(movie.releaseDate);
-        movieVoteAverageTextView.setText(getResources().getString(R.string.rate) + " " + movie.voteAverage + " / 10");
+        setTitle(movie.title);
+        movieReleaseDateTextView.setText(getResources().getString(R.string.release_date) + " " + movie.releaseDate);
+        movieRatingBar.setRating((float) (movie.voteAverage / 2.0));
         movieVotesCountTextView.setText(getResources().getString(R.string.total_votes) + " " + movie.voteCount);
 
 

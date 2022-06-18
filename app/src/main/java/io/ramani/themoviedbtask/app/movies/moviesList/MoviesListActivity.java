@@ -1,4 +1,4 @@
-package io.ramani.themoviedbtask.app.moviesList;
+package io.ramani.themoviedbtask.app.movies.moviesList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import io.ramani.themoviedbtask.R;
 import io.ramani.themoviedbtask.app.base.BaseActivity;
 import io.ramani.themoviedbtask.app.base.PaginationScrollListener;
-import io.ramani.themoviedbtask.app.movieDetails.MovieDetailsActivity;
+import io.ramani.themoviedbtask.app.movies.movieDetails.MovieDetailsActivity;
 import io.ramani.themoviedbtask.app.viewModels.MoviesViewModel;
 import io.ramani.themoviedbtask.domain.model.MoviesModel;
 

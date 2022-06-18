@@ -1,4 +1,4 @@
-package io.ramani.themoviedbtask.app.moviesList;
+package io.ramani.themoviedbtask.app.movies.moviesList;
 
 
 import android.content.Context;
@@ -53,9 +53,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
                     .apply(RequestOptions.centerCropTransform()).into(holder.moviePosterImageView);
         }
         holder.movieTitleTextView.setText(movie.title);
-        holder.movieReleaseDateTextView.setText(movie.releaseDate);
-        holder.movieVoteAverageTextView.setText(context.getResources().getString(R.string.rate) + " " + movie.voteAverage + " / 10");
-        holder.movieVotesCountTextView.setText(context.getResources().getString(R.string.total_votes) + " " + movie.voteCount);
+        holder.movieVoteAverageTextView.setText(" " + movie.voteAverage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,17 +71,13 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
 
         ImageView moviePosterImageView;
         TextView movieTitleTextView;
-        TextView movieReleaseDateTextView;
         TextView movieVoteAverageTextView;
-        TextView movieVotesCountTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             moviePosterImageView = itemView.findViewById(R.id.movie_poster_image_view);
             movieTitleTextView = itemView.findViewById(R.id.movie_title_text_view);
-            movieReleaseDateTextView = itemView.findViewById(R.id.movie_release_date_text_view);
             movieVoteAverageTextView = itemView.findViewById(R.id.movie_vote_average_text_view);
-            movieVotesCountTextView = itemView.findViewById(R.id.movie_votes_count_text_view);
         }
     }
 

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_bg"
             android:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
             app:iconifiedByDefault="false"
             app:queryHint="@string/search_hint" />
 

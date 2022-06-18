@@ -1,4 +1,4 @@
-package io.ramani.themoviedbtask.app.movieDetails;
+package io.ramani.themoviedbtask.app.movies.movieDetails;
 
 import android.os.Bundle;
 import android.view.View;
